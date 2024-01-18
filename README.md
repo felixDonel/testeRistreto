@@ -15,4 +15,8 @@ Você deve criar toda nomenclatura, estrutura de arquivos, tipagem, métodos, co
 Imagine que hoje você estaria contratando alguém para desenvolver o sistema de vendas da sua empresa, você é um cliente com bom conhecimento técnico. Qual seria o mínimo que você aceitaria que um desenvolvedor entregasse comercialmente para a sua empresa, como seria seu MVP? 
 Seu objetivo é entregar um código 1.0, o mais simples e seguro possível, no prazo de até 3 dias. 
 
+# Liberdade
+
+Não estipulei pré requisito algum que não citado acima, você deve escolher as opções que lhe deixam mais confortáveis, seja o banco, a conexão, o padrão...
+
 Boa sorte.
