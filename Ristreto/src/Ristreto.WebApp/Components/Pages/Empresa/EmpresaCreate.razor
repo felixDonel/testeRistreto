@@ -1,0 +1,52 @@
+﻿@page "/CadastrarEmpresa"
+@using Ristreto.Application
+@using Ristreto.Application.DTO
+
+@rendermode InteractiveServer
+
+<h3>Criar Empresa</h3>
+
+@if (salvoComSucesso)
+{
+    <p>Empresa salva com sucesso!</p>
+}
+else
+{
+    <form @onsubmit="SalvarEmpresa">
+        <div>
+            <label for="nomeEmpresarial">Nome Empresarial:</label>
+            <input id="nomeEmpresarial" type="text" @bind="empresa.NomeEmpresarial" />
+        </div>
+        <div>
+            <label for="telefone">Telefone:</label>
+            <input id="telefone" type="text" @bind="empresa.Telefone" />
+        </div>
+        <div>
+            <label for="url">URL:</label>
+            <input id="url" type="text" @bind="empresa.URL" />
+        </div>
+        <div>
+            <button type="submit">Salvar</button>
+        </div>
+    </form>
+}
+
+@code {
+    [Inject]
+    private IEmpresaApplication _empresaApplication { get; set; }
+    private EmpresaDTO empresa = new EmpresaDTO();
+    private bool salvoComSucesso = false;
+
+    private async Task SalvarEmpresa()
+    {
+        try 
+        {
+            await _empresaApplication.Add(empresa);
+            salvoComSucesso = true;
+        } 
+        catch (Exception ex)
+        {
+        };
+    }
+    }
+}

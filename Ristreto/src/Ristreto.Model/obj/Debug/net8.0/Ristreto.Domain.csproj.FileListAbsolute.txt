@@ -1,0 +1,13 @@
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\bin\Debug\net8.0\Ristreto.Domain.deps.json
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\bin\Debug\net8.0\Ristreto.Domain.dll
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\bin\Debug\net8.0\Ristreto.Domain.pdb
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.csproj.AssemblyReference.cache
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.AssemblyInfoInputs.cache
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.AssemblyInfo.cs
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.sourcelink.json
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.dll
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\refint\Ristreto.Domain.dll
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\Ristreto.Domain.pdb
+C:\Users\Feeco\source\repos\felixDonel\testeRistreto\Ristreto\src\Ristreto.Model\obj\Debug\net8.0\ref\Ristreto.Domain.dll

@@ -1,0 +1,73 @@
+﻿@page "/Empresas"
+@using Ristreto.Application
+@using Ristreto.Application.DTO
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>Empresas</PageTitle>
+
+<h1>Empresas</h1>
+<button class="btn btn-primary" @onclick="() => CadastrarEmpresa()">Cadastrar</button>
+@if (empresas != null && empresas.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome Empresarial</th>
+                <th>Telefone</th>
+                <th>URL</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var empresa in empresas)
+            {
+                <tr>
+                    <td>@empresa.NomeEmpresarial</td>
+                    <td>@empresa.Telefone</td>
+                    <td>@empresa.URL</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick=" async() => await ExcluirEmpresa(empresa.Id)">Excluir</button>
+                        <button class="btn btn-primary" @onclick="() => EditarEmpresa(empresa.Id)">Editar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhuma empresa cadastrada.</p>
+}
+
+@code {
+    [Inject]
+    private IEmpresaApplication _empresaApplication { get; set; }
+    List<EmpresaDTO> empresas = new List<EmpresaDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await BuscarListaEmpresas();
+    }
+    private async Task ExcluirEmpresa(int Id)
+    {
+        await _empresaApplication.Delete(Id);
+        await BuscarListaEmpresas();
+    }
+
+    private void EditarEmpresa(int empresaId)
+    {
+        Navigation.NavigateTo($"/EditarEmpresa/{empresaId}");
+    }
+    
+    private void CadastrarEmpresa()
+    {
+        Navigation.NavigateTo($"/CadastrarEmpresa");
+    }
+
+
+    private async Task BuscarListaEmpresas()
+    {
+        empresas = (await _empresaApplication.GetAll()).ToList();
+    }
+}

@@ -1,0 +1,67 @@
+﻿@page "/CadastrarFuncionario/{EmpresaId:int}"
+
+@using Ristreto.Application
+@using Ristreto.Application.DTO
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>Cadastrar Funcionário</PageTitle>
+
+<h3>Cadastrar Funcionário</h3>
+
+@if (funcionario != null)
+{
+    <form>
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" @bind="funcionario.Nome" />
+        </div>
+        <div class="form-group">
+            <label for="cargo">Cargo:</label>
+            <input type="text" class="form-control" id="cargo" @bind="funcionario.Cargo" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" @bind="funcionario.Email" />
+        </div>
+        <div class="form-group">
+            <label for="dataNascimento">Data de Nascimento:</label>
+            <input type="date" class="form-control" id="dataNascimento" @bind="funcionario.DataNascimento" />
+        </div>
+        <div class="form-group">
+            <label for="situacao">Situação:</label>
+            <select class="form-control" id="situacao" @bind="funcionario.Situacao">
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="userName">Nome de Usuário:</label>
+            <input type="text" class="form-control" id="userName" @bind="funcionario.UserName" />
+        </div>
+        <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="password" class="form-control" id="password" @bind="funcionario.PasswordHash" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" @onclick="async () => await CadastrarFuncionario()">Cadastrar</button>
+    </form>
+}
+else
+{
+    <p>Erro ao carregar informações do funcionário.</p>
+}
+
+@code {
+    [Parameter]
+    public int EmpresaId { get; set; }
+    [Inject]
+    private IFuncionarioApplication _funcionarioApplication { get; set; }
+
+    private FuncionarioDTO funcionario = new FuncionarioDTO();
+    private async Task CadastrarFuncionario()
+    {
+        funcionario.EmpresaId = EmpresaId;
+        await _funcionarioApplication.Add(funcionario);
+    }
+}

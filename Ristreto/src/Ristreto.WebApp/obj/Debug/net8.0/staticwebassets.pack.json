@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Feeco\\source\\repos\\felixDonel\\testeRistreto\\Ristreto\\src\\Ristreto.WebApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Ristreto.WebApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Ristreto.WebApp.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Feeco\\source\\repos\\felixDonel\\testeRistreto\\Ristreto\\src\\Ristreto.WebApp\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Feeco\\source\\repos\\felixDonel\\testeRistreto\\Ristreto\\src\\Ristreto.WebApp\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Feeco\\source\\repos\\felixDonel\\testeRistreto\\Ristreto\\src\\Ristreto.WebApp\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Feeco\\source\\repos\\felixDonel\\testeRistreto\\Ristreto\\src\\Ristreto.WebApp\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Ristreto.WebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Ristreto.WebApp.props",
+      "PackagePath": "build\\Ristreto.WebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Ristreto.WebApp.props",
+      "PackagePath": "buildMultiTargeting\\Ristreto.WebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Ristreto.WebApp.props",
+      "PackagePath": "buildTransitive\\Ristreto.WebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

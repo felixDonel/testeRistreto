@@ -1,0 +1,107 @@
+﻿@page "/EditarEmpresa/{EmpresaId:int}"
+@using Ristreto.Application
+@using Ristreto.Application.DTO
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>Editar Empresa</PageTitle>
+
+<h3>Editar Empresa</h3>
+
+@if (empresa != null)
+{
+    <form>
+        <div class="form-group">
+            <label for="nomeEmpresarial">Nome Empresarial:</label>
+            <input type="text" class="form-control" id="nomeEmpresarial" @bind="empresa.NomeEmpresarial" />
+        </div>
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="text" class="form-control" id="telefone" @bind="empresa.Telefone" />
+        </div>
+        <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="text" class="form-control" id="url" @bind="empresa.URL" />
+        </div>
+
+        <button class="btn btn-primary" @onclick="async () => await SalvarEdicao()">Salvar</button>
+        <button class="btn btn-primary" @onclick="() => Voltar()">Voltar</button>
+    </form>
+
+
+    <h3>Funcionarios</h3>
+    <button class="btn btn-primary" @onclick="() => CadastrarFuncionario()">Cadastrar</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Email</th>
+                <th>Data de Nascimento</th>
+                <th>Situação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var funcionario in funcionarios)
+            {
+                <tr>
+                    <td>@funcionario.Nome</td>
+                    <td>@funcionario.Cargo</td>
+                    <td>@funcionario.Email</td>
+                    <td>@funcionario.DataNascimento.ToShortDateString()</td>
+                    <td>@funcionario.Situacao</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="async() => await ExcluirFuncionario(funcionario.Id)">Excluir</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <p>Empresa não encontrada.</p>
+}
+
+@code {
+    [Parameter]
+    public int EmpresaId { get; set; }
+
+    [Inject]
+    private IEmpresaApplication _empresaApplication { get; set; }
+    [Inject]
+    private IFuncionarioApplication _funcionariompresaApplication { get; set; }
+
+    private EmpresaDTO empresa;
+    private List<FuncionarioDTO> funcionarios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        empresa = await _empresaApplication.GetForId(EmpresaId);
+        funcionarios = (await _funcionariompresaApplication.GetForEmpresaId(EmpresaId)).ToList();
+    }
+
+    private async Task SalvarEdicao()
+    {
+        if (empresa != null)
+        {
+            await _empresaApplication.Update(empresa);
+        }
+    }
+    private async Task ExcluirFuncionario(string funcionarioId)
+    {
+        await _funcionariompresaApplication.Delete(funcionarioId);
+    }
+    private void Voltar()
+    {
+        Navigation.NavigateTo($"/Empresas");
+    }
+
+    private void CadastrarFuncionario()
+    {
+        Navigation.NavigateTo($"/CadastrarFuncionario/{EmpresaId}");
+    }
+}
