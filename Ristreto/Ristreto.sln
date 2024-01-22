@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ristreto.Data", "src\Ristre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ristreto.Domain", "src\Ristreto.Model\Ristreto.Domain.csproj", "{7ADFCA7C-95E0-4287-A7EA-67045B5393CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ristreto.Domain.Test", "test\Ristreto.Test\Ristreto.Domain.Test.csproj", "{D1F5D258-76D6-4AF3-9B54-50616CDA4F30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ristreto.Test", "test\Ristreto.Test\Ristreto.Test.csproj", "{D1F5D258-76D6-4AF3-9B54-50616CDA4F30}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ristreto.WebApp", "src\Ristreto.WebApp\Ristreto.WebApp.csproj", "{A00C0ED0-B9A8-4D81-AE08-4780432AF3C2}"
 EndProject

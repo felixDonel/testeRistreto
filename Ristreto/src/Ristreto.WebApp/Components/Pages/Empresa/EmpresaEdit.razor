@@ -8,9 +8,14 @@
 
 <h3>Editar Empresa</h3>
 
+@if (erro)
+{
+    <p>@msgerro</p>
+}
+
 @if (empresa != null)
 {
-    <form>
+    <form @onsubmit="SalvarEdicao">
         <div class="form-group">
             <label for="nomeEmpresarial">Nome Empresarial:</label>
             <input type="text" class="form-control" id="nomeEmpresarial" @bind="empresa.NomeEmpresarial" />
@@ -24,8 +29,9 @@
             <input type="text" class="form-control" id="url" @bind="empresa.URL" />
         </div>
 
-        <button class="btn btn-primary" @onclick="async () => await SalvarEdicao()">Salvar</button>
-        <button class="btn btn-primary" @onclick="() => Voltar()">Voltar</button>
+        <div>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+        </div>
     </form>
 
 
@@ -77,6 +83,8 @@ else
 
     private EmpresaDTO empresa;
     private List<FuncionarioDTO> funcionarios;
+    private bool erro = false;
+    private string msgerro = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -86,14 +94,29 @@ else
 
     private async Task SalvarEdicao()
     {
-        if (empresa != null)
+        try
         {
             await _empresaApplication.Update(empresa);
+            erro = false;
+        }
+        catch (Exception ex)
+        {
+            msgerro = ex.Message;
+            erro = true;
         }
     }
     private async Task ExcluirFuncionario(string funcionarioId)
     {
-        await _funcionariompresaApplication.Delete(funcionarioId);
+        try
+        {
+            await _funcionariompresaApplication.Delete(funcionarioId);
+            funcionarios.Remove(funcionarios.Where(f => f.Id == funcionarioId).FirstOrDefault());
+        }
+        catch (Exception ex)
+        {
+            erro = true;
+            msgerro = ex.Message;
+        }
     }
     private void Voltar()
     {

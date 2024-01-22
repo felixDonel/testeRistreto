@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ristreto.WebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee473d7407d3705fc71be4ed1fb1dbbc96fbea88")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b83a428486e6f47a2a3bd0875b01629280c4f2b1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ristreto.WebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ristreto.WebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

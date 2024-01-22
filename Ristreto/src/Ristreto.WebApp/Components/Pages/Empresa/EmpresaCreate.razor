@@ -1,17 +1,16 @@
 ﻿@page "/CadastrarEmpresa"
 @using Ristreto.Application
 @using Ristreto.Application.DTO
+@inject NavigationManager Navigation
 
 @rendermode InteractiveServer
 
 <h3>Criar Empresa</h3>
-
-@if (salvoComSucesso)
+    
+@if (erro)
 {
-    <p>Empresa salva com sucesso!</p>
+    <p>@msgerro</p>
 }
-else
-{
     <form @onsubmit="SalvarEmpresa">
         <div>
             <label for="nomeEmpresarial">Nome Empresarial:</label>
@@ -26,26 +25,31 @@ else
             <input id="url" type="text" @bind="empresa.URL" />
         </div>
         <div>
-            <button type="submit">Salvar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
     </form>
-}
+
 
 @code {
     [Inject]
     private IEmpresaApplication _empresaApplication { get; set; }
     private EmpresaDTO empresa = new EmpresaDTO();
     private bool salvoComSucesso = false;
+    private bool erro = false;
+    private string msgerro = "";
 
     private async Task SalvarEmpresa()
     {
         try 
         {
             await _empresaApplication.Add(empresa);
-            salvoComSucesso = true;
+
+            Navigation.NavigateTo($"/Empresas");
         } 
         catch (Exception ex)
         {
+            erro = true;
+            msgerro = ex.Message;
         };
     }
     }

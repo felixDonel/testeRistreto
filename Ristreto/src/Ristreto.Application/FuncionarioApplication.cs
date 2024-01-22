@@ -28,14 +28,20 @@ namespace Ristreto.Application
                 FuncionarioValidator validator = new FuncionarioValidator();
                 validator.ValidateAndThrow(funcionario);
 
+                if (await _funcionarioRepository.AnyUserName(funcionario.UserName))
+                    throw new ValidationException("Username já cadastrado!");
+
                 await _funcionarioRepository.Add(funcionario);
             }
-            catch (Exception ex)
+            catch (ValidationException ex)
             {
-
                 throw;
             }
-            
+            catch (Exception)
+            {
+                // entender o porque esta dando erro na DI do DBcontext depois de salvo no banco
+            }
+
         }
 
         public async Task Delete(string funcionarioId)
@@ -48,7 +54,6 @@ namespace Ristreto.Application
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

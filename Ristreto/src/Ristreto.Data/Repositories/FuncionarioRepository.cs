@@ -30,11 +30,17 @@ namespace Ristreto.Data.Repositories
         {
             return await _context.Funcionarios.FindAsync(id);
         }
+        public async Task<bool> AnyUserName(string username)
+        {
+            return await _context.Funcionarios.AsNoTracking().AnyAsync(f => f.UserName == username);
+        }
 
         public async Task<int> Update(Funcionario entity)
         {
             _context.Funcionarios.Update(entity);
-            return await _context.SaveChangesAsync();
+            var retorno = await _context.SaveChangesAsync();
+            _context.ChangeTracker.Clear();
+            return retorno;
         }
         public async Task<int> Delete(Funcionario entity)
         {

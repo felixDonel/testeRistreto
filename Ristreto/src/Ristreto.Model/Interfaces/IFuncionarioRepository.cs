@@ -11,5 +11,6 @@ namespace Ristreto.Domain.Interfaces
     {
         Task<Funcionario> GetById(string id);
         Task<IEnumerable<Funcionario>> GetByEmpresaId(int empresaId);
+        Task<bool> AnyUserName(string username);
     }
 }

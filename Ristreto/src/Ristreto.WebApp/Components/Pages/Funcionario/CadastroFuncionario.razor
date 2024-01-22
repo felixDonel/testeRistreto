@@ -8,10 +8,13 @@
 <PageTitle>Cadastrar Funcionário</PageTitle>
 
 <h3>Cadastrar Funcionário</h3>
-
+@if (erro)
+{
+    <p>@msgerro</p>
+}
 @if (funcionario != null)
 {
-    <form>
+    <form @onsubmit="CadastrarFuncionario">
         <div class="form-group">
             <label for="nome">Nome:</label>
             <input type="text" class="form-control" id="nome" @bind="funcionario.Nome" />
@@ -44,7 +47,7 @@
             <input type="password" class="form-control" id="password" @bind="funcionario.PasswordHash" />
         </div>
 
-        <button type="submit" class="btn btn-primary" @onclick="async () => await CadastrarFuncionario()">Cadastrar</button>
+        <button type="submit" class="btn btn-primary" >Cadastrar</button>
     </form>
 }
 else
@@ -57,11 +60,22 @@ else
     public int EmpresaId { get; set; }
     [Inject]
     private IFuncionarioApplication _funcionarioApplication { get; set; }
+    private bool erro = false;
+    private string msgerro = "";
 
     private FuncionarioDTO funcionario = new FuncionarioDTO();
     private async Task CadastrarFuncionario()
     {
-        funcionario.EmpresaId = EmpresaId;
-        await _funcionarioApplication.Add(funcionario);
+        try
+        {
+            funcionario.EmpresaId = EmpresaId;
+            await _funcionarioApplication.Add(funcionario);
+            Navigation.NavigateTo($"/EditarEmpresa/{EmpresaId}");
+        }
+        catch (Exception ex)
+        {
+            erro = true;
+            msgerro = ex.Message;
+        }
     }
 }

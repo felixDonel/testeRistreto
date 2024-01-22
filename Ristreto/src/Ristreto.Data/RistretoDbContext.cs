@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Ristreto.Data.Configurations;
 using Ristreto.Domain.Models;
-using System.Reflection.Emit;
 
 namespace Ristreto.Data
 {

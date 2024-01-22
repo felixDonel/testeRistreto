@@ -31,7 +31,9 @@ namespace Ristreto.Data.Repositories
         public async Task<int> Update(Empresa entity)
         {
             _context.Empresas.Update(entity);
-            return await _context.SaveChangesAsync();
+            var retorno = await _context.SaveChangesAsync();
+            _context.ChangeTracker.Clear();
+            return retorno;
         }
         public async Task<int> Delete(Empresa entity)
         {

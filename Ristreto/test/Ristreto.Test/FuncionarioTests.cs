@@ -1,11 +1,10 @@
-﻿using Ristreto.Domain.Enum;
+﻿using Ristreto.Application.DTO;
+using Ristreto.Domain.Enum;
+using Ristreto.Domain.Interfaces;
 using Ristreto.Domain.Models;
 using Ristreto.Domain.validations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Moq;
+using Ristreto.Application;
 
 namespace Ristreto.Test
 {
@@ -56,6 +55,66 @@ namespace Ristreto.Test
             var result = validator.Validate(funcionario);
 
             Assert.False(result.IsValid);
+        }
+
+        [Fact]
+        public void Funcionario_AtivarFuncionario_DeveEstarAtivo() {
+            var funcionario = new Funcionario(
+                 "Felix Gustavo Donel",
+                 "Felixgustavodonel@gmail.com",
+                 "Desenvolvedor",
+                 DateTime.Now.AddYears(-30),
+                 "FelixDonel",
+                 "Senha123",
+                 ESituacaoFuncionario.Inativo,
+                 1
+            );
+
+            funcionario.Ativar();
+
+            Assert.Equal(ESituacaoFuncionario.Ativo, funcionario.Situacao);
+        }
+
+        [Fact]
+        public void Funcionario_DesativarFuncionario_DeveEstarDesativo()
+        {
+            var funcionario = new Funcionario(
+                 "Felix Gustavo Donel",
+                 "Felixgustavodonel@gmail.com",
+                 "Desenvolvedor",
+                 DateTime.Now.AddYears(-30),
+                 "FelixDonel",
+                 "Senha123",
+                 ESituacaoFuncionario.Ativo,
+                 1
+            );
+
+            funcionario.Desativar();
+
+            Assert.Equal(ESituacaoFuncionario.Inativo, funcionario.Situacao);
+        }
+
+        [Fact]
+        public async Task FuncionarioApplication_AdicionarFuncionarioComUserNameExistente_DeveLancarExcecao()
+        {
+            var mockRepositorioFuncionario = new Mock<IFuncionarioRepository>();
+            mockRepositorioFuncionario.Setup(repo => repo.AnyUserName(It.IsAny<string>())).ReturnsAsync(true);
+
+            var funcionario = FuncionarioDTOFactory.CreateDTO(new Funcionario(
+                 "Felix Gustavo Donel",
+                 "Felixgustavodonel@gmail.com",
+                 "Desenvolvedor",
+                 DateTime.Now.AddYears(-30),
+                 "FelixDonel",
+                 "Senha123",
+                 ESituacaoFuncionario.Ativo,
+                 1
+            ));
+
+            var aplicacao = new FuncionarioApplication(mockRepositorioFuncionario.Object);
+
+            
+            await Assert.ThrowsAsync<FluentValidation.ValidationException>(() => aplicacao.Add(funcionario));
         }
     }
 }

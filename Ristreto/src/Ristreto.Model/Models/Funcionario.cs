@@ -28,7 +28,14 @@ namespace Ristreto.Domain.Models
             Situacao = situacao;
             EmpresaId = empresaid; 
         }
+        public void Ativar() {
+            Situacao = ESituacaoFuncionario.Ativo;
+        }
 
+        public void Desativar()
+        {
+            Situacao = ESituacaoFuncionario.Inativo;
+        }
 
 
     }

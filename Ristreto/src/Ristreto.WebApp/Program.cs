@@ -12,7 +12,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddDbContext<RistretoDbContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),
-    ServiceLifetime.Scoped);
+    ServiceLifetime.Transient);
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<IEmpresaApplication, EmpresaApplication>();
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
